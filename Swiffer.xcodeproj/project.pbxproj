@@ -7,21 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C730DAB1CB8D90F00741AD9 /* SweetsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C730DAA1CB8D90F00741AD9 /* SweetsTableViewController.swift */; };
 		7CC64F581CB8D67A00C89DBA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC64F571CB8D67A00C89DBA /* AppDelegate.swift */; };
-		7CC64F5A1CB8D67A00C89DBA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC64F591CB8D67A00C89DBA /* ViewController.swift */; };
 		7CC64F5D1CB8D67A00C89DBA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CC64F5B1CB8D67A00C89DBA /* Main.storyboard */; };
 		7CC64F5F1CB8D67A00C89DBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CC64F5E1CB8D67A00C89DBA /* Assets.xcassets */; };
 		7CC64F621CB8D67A00C89DBA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CC64F601CB8D67A00C89DBA /* LaunchScreen.storyboard */; };
+		7CC64F6B1CB8D69C00C89DBA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CC64F6A1CB8D69C00C89DBA /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C730DAA1CB8D90F00741AD9 /* SweetsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SweetsTableViewController.swift; sourceTree = "<group>"; };
 		7CC64F541CB8D67A00C89DBA /* Swiffer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swiffer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CC64F571CB8D67A00C89DBA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7CC64F591CB8D67A00C89DBA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7CC64F5C1CB8D67A00C89DBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7CC64F5E1CB8D67A00C89DBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7CC64F611CB8D67A00C89DBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7CC64F631CB8D67A00C89DBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CC64F691CB8D69800C89DBA /* Swiffer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Swiffer.entitlements; sourceTree = "<group>"; };
+		7CC64F6A1CB8D69C00C89DBA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CC64F6B1CB8D69C00C89DBA /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +42,7 @@
 		7CC64F4B1CB8D67A00C89DBA = {
 			isa = PBXGroup;
 			children = (
+				7CC64F6A1CB8D69C00C89DBA /* CloudKit.framework */,
 				7CC64F561CB8D67A00C89DBA /* Swiffer */,
 				7CC64F551CB8D67A00C89DBA /* Products */,
 			);
@@ -54,8 +59,9 @@
 		7CC64F561CB8D67A00C89DBA /* Swiffer */ = {
 			isa = PBXGroup;
 			children = (
+				7CC64F691CB8D69800C89DBA /* Swiffer.entitlements */,
 				7CC64F571CB8D67A00C89DBA /* AppDelegate.swift */,
-				7CC64F591CB8D67A00C89DBA /* ViewController.swift */,
+				7C730DAA1CB8D90F00741AD9 /* SweetsTableViewController.swift */,
 				7CC64F5B1CB8D67A00C89DBA /* Main.storyboard */,
 				7CC64F5E1CB8D67A00C89DBA /* Assets.xcassets */,
 				7CC64F601CB8D67A00C89DBA /* LaunchScreen.storyboard */,
@@ -96,6 +102,12 @@
 				TargetAttributes = {
 					7CC64F531CB8D67A00C89DBA = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 5K99777NES;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -135,7 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CC64F5A1CB8D67A00C89DBA /* ViewController.swift in Sources */,
+				7C730DAB1CB8D90F00741AD9 /* SweetsTableViewController.swift in Sources */,
 				7CC64F581CB8D67A00C89DBA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,7 +263,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Swiffer/Swiffer.entitlements;
 				INFOPLIST_FILE = Swiffer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kiloloco.Swiffer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -262,7 +276,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Swiffer/Swiffer.entitlements;
 				INFOPLIST_FILE = Swiffer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kiloloco.Swiffer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -288,6 +304,7 @@
 				7CC64F681CB8D67A00C89DBA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

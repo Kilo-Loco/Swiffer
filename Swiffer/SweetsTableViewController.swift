@@ -10,15 +10,44 @@ import UIKit
 import CloudKit
 
 class SweetsTableViewController: UITableViewController {
+    
+    
+    var sweets = [CKRecord]()
+    var refresh: UIRefreshControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        refresh = UIRefreshControl()
+        refresh.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refresh.addTarget(self, action: #selector(self.loadData), forControlEvents: .ValueChanged)
+        self.tableView.addSubview(refresh)
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.loadData()
+    }
+    
+    
+    func loadData() {
+        sweets = [CKRecord]()
+        
+        let publicData = CKContainer.defaultContainer().publicCloudDatabase
+        let query = CKQuery(recordType: "Sweet", predicate: NSPredicate(format: "TRUEPREDICATE", argumentArray: nil))
+        query.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        
+        publicData.performQuery(query, inZoneWithID: nil) { (results: [CKRecord]?, error: NSError?) in
+            guard let sweets = results else {
+                print(error)
+                return
+            }
+            
+            self.sweets = sweets
+            dispatch_async(dispatch_get_main_queue(), { 
+                self.tableView.reloadData()
+                self.refresh.endRefreshing()
+            })
+        }
+        
+        
     }
 
     @IBAction func sendSweet(sender: AnyObject) {
@@ -38,9 +67,17 @@ class SweetsTableViewController: UITableViewController {
                 let publicData = CKContainer.defaultContainer().publicCloudDatabase
                 publicData.saveRecord(newSweet, completionHandler: { (record: CKRecord?, error: NSError?) in
                     if error == nil {
-                        print("sweet saved")
+                        dispatch_async(dispatch_get_main_queue(), { 
+                            self.tableView.beginUpdates()
+                            self.sweets.insert(newSweet, atIndex: 0)
+                            let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+                            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
+                            self.tableView.endUpdates()
+                        })
+                    } else {
+                        print(error)
                     }
-                    print(error)
+                    
                 })
                 
                 
@@ -61,24 +98,37 @@ class SweetsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+       
+        return self.sweets.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
-        // Configure the cell...
+        if self.sweets.count == 0 {
+            return cell
+        }
+        
+        let sweet = sweets[indexPath.row]
+        
+        if let sweetContent = sweet["content"] as? String {
+            let dateFormat = NSDateFormatter()
+            dateFormat.dateFormat = "MM/dd/yyyy"
+            let dateString = dateFormat.stringFromDate(sweet.creationDate!)
+            
+            cell.textLabel?.text = sweetContent
+            cell.detailTextLabel?.text = dateString
+        }
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
